@@ -1,61 +1,89 @@
-import logo from "../assets/logo.png"
-import {navItems} from "../constants"
-import {Menu,X} from "lucide-react"
-import { useState } from "react"
-
+import { useState } from "react";
+import img from "../assets/logo.png";
+import { headerLinks } from "../constants";
+import { Menu, X } from "lucide-react";
+import { NavLink, useNavigate } from "react-router-dom";
 
 export const Header = () => {
-
-    const[mobileDrawer,setMobileDrawer]=useState(false);
-
-    const toggleMenu=(()=>{
-        setMobileDrawer(!mobileDrawer);
-    })
-
+  const [isOpen, setIsopen] = useState(false);
+  const toggle = () => {
+    setIsopen(!isOpen);
+  };
+  const navigator = useNavigate();
+  const handleSearch = (e) => {
+    e.preventDefault();
+    const queryTerm = e.target.search.value;
+    e.target.reset();
+    return navigator(`/search?q=${queryTerm}`);
+  };
   return (
-    <nav className="sticky top-0 z-50 py-3 border-b border-neutral-700/80 backdrop-blur-lg">
-        <div className="container px-4 relative mx-auto text-sm">
-            <div className="flex justify-between items-center">
-                <div className="flex items-center flex-shrink-0">
-                    <img src={logo} alt="" className="size-10 mr-2 rounded-full" />
-                    <span className="text-xl tracking-tight">ZapCode</span>
-                </div>
-                <ul className="lg:flex hidden ml-15 gap-12 capitalize text-[15px]">
-                    {navItems.map((i,index)=>(
-                        <li key={index}>
-                            <a className="hover:text-neutral-300" href={i.href}>{i.label}</a>
-                        </li>
-                    ))}
-
-                </ul> 
-                <div className="items-center justify-center hidden lg:flex space-x-12">
-                    <a href="#" className="hover:scale-105 transition px-3 py-2 border border-white rounded">Sign In </a>
-                    <a href="#" className="hover:scale-105 transition px-3 py-2 bg-gradient-to-r from-orange-500 to-orange-800 rounded ">Create an account</a>
-                </div>
-                <div className="lg:hidden">
-                    <button onClick={toggleMenu}>
-                        {mobileDrawer?<X/>:<Menu/>}
-                    </button>
-                </div>
+    <nav className="bg-black top-0 z-60 sticky w-full">
+      <div className="relative mx-auto">
+        <div className="flex justify-around items-center border-b border-neutral-600  py-5">
+          {/* logo */}
+          <a href="">
+            <div className="flex flex-shrink-0 justify-center gap-1 items-center mr-5">
+              <img src={img} alt="" className="size-6 lg:size-8" />
+              <h2 className="text-sm lg:text-xl">MovieHunt</h2>
             </div>
-            
-            {mobileDrawer&&(
-                <div className="flex flex-col items-center p-3 w-full fixed z-20 right-0 justify-around lg:hidden bg-neutral-900 capitalize ">
-                    <ul className="">
-                    
-                    <li className="py-3 "><a className="hover:text-neutral-300" href="#feature">features</a></li>
-                    <li className="py-3 "><a className="hover:text-neutral-300" href="#workflow">workflow</a></li>
-                    <li className="py-3 "><a className="hover:text-neutral-300" href="#pricing">pricing</a></li>
-                    <li className="py-3 "><a className="hover:text-neutral-300" href="#testimonials">testimonials</a></li>
+          </a>
+          {/* links */}
+          <div className="tracking-wide justify-center items-center gap-8 hidden lg:flex">
+            {headerLinks.map((links, index) => (
+              <div key={index} className="capitalize text-[16px]  ">
+                <NavLink
+                  to={links.href}
+                  className={({ isActive }) =>
+                    isActive ? "text-neutral-400" : "text-neutral-100"
+                  }
+                >
+                  {links.text}
+                </NavLink>
+              </div>
+            ))}
+          </div>
+          {/* search */}
+          <form className="relative hidden lg:flex">
+            <input
+              type="text"
+              className="bg-white p-0.5 lg:p-1.5 text-black rounded"
+              placeholder="Search Movies"
+            />
+          </form>
+          {/* toggle */}
+          <div
+            onClick={toggle}
+            className="hover:border p-1 ml-6 border-neutral-800 rounded hover:bg-neutral-800 lg:hidden z-130"
+          >
+            {isOpen ? <X /> : <Menu />}
+          </div>
 
-                </ul> 
-                <div className="flex gap-6 justify-center my-5">
-                <a href="#" className="hover:scale-105 transition px-3 py-2 border border-white rounded">Sign In </a>
-                <a href="#" className="hover:scale-105 transition px-3 py-2 bg-gradient-to-r from-orange-500 to-orange-800 rounded ">Create an account</a>
+          {isOpen && (
+            <div className=" absolute flex flex-col z-120 bg-neutral-900 text-center mt-40 pb-5 pt-5  w-full">
+              {headerLinks.map((links, index) => (
+                <div key={index} className="capitalize text-[13px] p-2">
+                  <NavLink
+                    to={links.href}
+                    className={({ isActive }) =>
+                      isActive ? "text-neutral-600" : "text-neutral-100"
+                    }
+                  >
+                    {links.text}
+                  </NavLink>
                 </div>
-                </div>
-            )}
+              ))}
+              <form onSubmit={handleSearch} className="mt-5">
+                <input
+                  name="search"
+                  type="text"
+                  className="bg-white p-0.5 w-1/2 h-10 lg:p-1.5 text-black rounded"
+                  placeholder="Search Movies"
+                />
+              </form>
+            </div>
+          )}
         </div>
+      </div>
     </nav>
-  )
-}
+  );
+};

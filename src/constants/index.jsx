@@ -179,3 +179,43 @@ export const communityLinks = [
   { href: "#", text: "Hackathons" },
   { href: "#", text: "Jobs" },
 ];
+
+// for another pro
+export const headerLinks=[
+  {href:"/" , text:"home"},
+  {href:"/movies/top" , text:"top rated"},
+  {href:"/movies/popular" , text:"popular"},
+  {href:"/movies/upcoming" , text:"upcoming"}
+]
+
+export const cardInfo=[
+  {name:"ghost rider",
+    text:"Lorem, ipsum dolor sit amet consectetur adipisicing elit. Nemo esse architecto rem deserunt veritatis repellendus quisquam tempora magni? Illo, dolore!",
+  rating:"6.2",
+review:"733"},
+
+  {name:"venom",
+    text:"Lorem, ipsum dolor sit amet consectetur adipisicing elit. Nemo esse architecto rem deserunt veritatis repellendus quisquam tempora magni? Illo, dolore!",
+  rating:"8.1",
+review:"998"},
+
+  {name:"deadpool",
+    text:"Lorem, ipsum dolor sit amet consectetur adipisicing elit. Nemo esse architecto rem deserunt veritatis repellendus quisquam tempora magni? Illo, dolore!",
+  rating:"6.7",
+review:"789"},
+
+  {name:"titanic",
+    text:"Lorem, ipsum dolor sit amet consectetur adipisicing elit. Nemo esse architecto rem deserunt veritatis repellendus quisquam tempora magni? Illo, dolore!",
+  rating:"6.0",
+review:"698"},
+
+  {name:"kill",
+    text:"Lorem, ipsum dolor sit amet consectetur adipisicing elit. Nemo esse architecto rem deserunt veritatis repellendus quisquam tempora magni? Illo, dolore!",
+  rating:"7.2",
+review:"456"},
+
+  {name:"race",
+    text:"Lorem, ipsum dolor sit amet consectetur adipisicing elit. Nemo esse architecto rem deserunt veritatis repellendus quisquam tempora magni? Illo, dolore!",
+  rating:"6.4",
+review:"1011"},
+]

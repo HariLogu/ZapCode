@@ -1,27 +1,20 @@
-import { useState } from 'react'
-import { Header } from './Components/Header'
-import { Hero } from './Components/Hero'
-import { Features } from './Components/Features'
-import { Workflow } from './Components/Workflow'
-import { Price } from './Components/Price'
-import { Testimonials } from './Components/Testimonials'
-import { Footer } from './Components/Footer'
+import { Header } from "./Components/Header";
+import { AllRoutes } from "./Routes/AllRoutes";
+import { Footer } from "./Components/Footer";
+import "./App.css";
 
 function App() {
-
   return (
     <>
-      <Header/>  
-      <div className="max-w-7xl mx-auto pt-20 px-10">
-        <Hero/>
-        <Features/>
-        <Workflow/>
-        <Price/>
-        <Testimonials/>
-        <Footer/>
-      </div>
+      <Header />
+      <section className="mx-10 my-5">
+        <AllRoutes />
+        <Footer />
+      </section>
+
+      
     </>
-  )
+  );
 }
 
-export default App
+export default App;
